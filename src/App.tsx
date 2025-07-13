@@ -159,8 +159,8 @@ function App() {
               </>
             ) : (
               <>
-                <Download className="w-6 h-6" />
-                Download Now
+            <Download className="w-6 h-6" />
+            Download Now
               </>
             )}
           </button>

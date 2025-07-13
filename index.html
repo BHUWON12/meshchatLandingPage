@@ -3,261 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeshChat - Communicate Anywhere, Anytime</title>
-    
-    <!-- Favicon -->
+    <title>MeshChat - Hybrid Communication</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        display: ['Montserrat', 'Inter', 'sans-serif'],
+                    },
                     colors: {
                         'meshchat-green': '#1C8A4C',
                         'meshchat-green-light': '#22C55E',
-                        'meshchat-green-dark': '#166534'
-                    }
+                        'meshchat-green-dark': '#166534',
+                        'meshchat-teal': '#22d3ee',
+                        'meshchat-dark': '#10141a',
+                    },
+                    boxShadow: {
+                        glass: '0 8px 32px 0 rgba(31, 38, 135, 0.18)',
+                    },
                 }
             }
         }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+        .fade-in { animation: fadeIn 1.2s ease 0.2s both; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: none; } }
+        .glass {
+            background: rgba(255,255,255,0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            border: 1.5px solid rgba(255,255,255,0.25);
+        }
     </style>
 </head>
-<body class="bg-white text-gray-800 leading-relaxed">
-    
-    <!-- Header Section -->
-    <header class="bg-white py-12 px-4 text-center">
-        <div class="max-w-4xl mx-auto">
-            <!-- Logo -->
-            <div class="flex justify-center mb-6">
-                <div class="w-20 h-20 bg-meshchat-green rounded-2xl flex items-center justify-center shadow-lg">
-                    <span class="text-white text-2xl font-bold">MC</span>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col">
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pb-12 pt-16 bg-gradient-to-br from-meshchat-green-light/20 to-white">
+        <div class="w-24 h-24 bg-meshchat-green rounded-2xl flex items-center justify-center mb-8 shadow-lg">
+            <span class="text-white text-3xl font-bold">MC</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-display font-extrabold text-meshchat-dark mb-2 fade-in">MeshChat</h1>
+        <p class="text-lg md:text-xl text-gray-600 text-center mb-4 fade-in" style="animation-delay:0.2s;">
+            Stay Connected Anytime, Anywhere – Seamless Messaging Online or Offline
+        </p>
+        <p class="text-base text-gray-500 text-center mb-8 max-w-xl fade-in" style="animation-delay:0.3s;">
+            MeshChat is a resilient hybrid communication platform designed for uninterrupted connectivity—whether you're in urban zones or disaster-struck areas. Empowering users, emergency responders, and communities to stay connected when it matters most.
+        </p>
+        <a href="https://drive.usercontent.google.com/download?id=1OzLVzx35dFZ3b59c89-yoF-pvHytSWZ7&export=download&authuser=0"
+           class="w-full max-w-xs md:max-w-sm block text-center py-4 rounded-xl font-semibold text-white text-lg bg-gradient-to-r from-meshchat-green to-meshchat-green-light shadow-md hover:from-meshchat-green-dark hover:to-meshchat-green focus:outline-none focus:ring-2 focus:ring-meshchat-green/40 transition mb-2 fade-in" style="animation-delay:0.4s;">
+            Download Now
+        </a>
+    </section>
+    <!-- SVG Wave Divider -->
+    <div class="-mt-2">
+        <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    </div>
+    <!-- Card Sections -->
+    <main class="flex-1 w-full max-w-6xl mx-auto px-4">
+        <!-- The Problem -->
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">The Problem</h2>
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">📶</span>
+                    <h3 class="font-semibold mb-2">Inconsistent communication</h3>
+                    <p class="text-gray-600 text-sm">Remote areas often suffer from unreliable or unavailable internet connectivity, causing messaging disruptions.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🚨</span>
+                    <h3 class="font-semibold mb-2">Emergency communication breakdowns</h3>
+                    <p class="text-gray-600 text-sm">Critical situations demand robust communication that current solutions fail to guarantee, especially offline.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🔗</span>
+                    <h3 class="font-semibold mb-2">Lack of unified solution</h3>
+                    <p class="text-gray-600 text-sm">No existing apps seamlessly support both online cloud and offline mesh network messaging modes.</p>
                 </div>
             </div>
-            
-            <!-- Title and Subtitle -->
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">MeshChat</h1>
-            <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                Communicate anywhere, anytime — even without the internet.
+        </section>
+        <!-- SVG Wave Divider -->
+        <div class="-mt-8">
+            <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#f9fafb" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </div>
+        <!-- Who It's For -->
+        <section class="mb-16 bg-gray-50 rounded-3xl py-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">Who It's For</h2>
+            <div class="grid gap-6 md:grid-cols-4">
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🏞️</span>
+                    <h3 class="font-semibold mb-2">Remote & rural residents</h3>
+                    <p class="text-gray-600 text-sm">For people in rural regions with limited access to the internet.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🚑</span>
+                    <h3 class="font-semibold mb-2">Disaster & emergency teams</h3>
+                    <p class="text-gray-600 text-sm">For emergency teams who need to stay connected in critical situations, even without internet.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🧗</span>
+                    <h3 class="font-semibold mb-2">Adventure travelers</h3>
+                    <p class="text-gray-600 text-sm">For travelers who explore offgrid locations where internet is unreliable.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🏘️</span>
+                    <h3 class="font-semibold mb-2">Rural communities</h3>
+                    <p class="text-gray-600 text-sm">For communities that want reliable and cost-effective communication solutions.</p>
+                </div>
+            </div>
+        </section>
+        <!-- SVG Wave Divider -->
+        <div class="-mt-8 rotate-180">
+            <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </div>
+        <!-- Our Solution -->
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">Our Solution</h2>
+            <div class="grid gap-6 md:grid-cols-4">
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🔀</span>
+                    <h3 class="font-semibold mb-2">Hybrid chat app</h3>
+                    <p class="text-gray-600 text-sm">Automatically switches between online cloud mode and offline mesh networks for seamless messaging.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🔄</span>
+                    <h3 class="font-semibold mb-2">Auto-sync messages</h3>
+                    <p class="text-gray-600 text-sm">Messages sent offline sync instantly when internet connectivity is restored.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">📡</span>
+                    <h3 class="font-semibold mb-2">P2P communication</h3>
+                    <p class="text-gray-600 text-sm">Uses Bluetooth and Wi-Fi Direct for peer-to-peer chats without requiring central infrastructure.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🔒</span>
+                    <h3 class="font-semibold mb-2">Lightweight & secure</h3>
+                    <p class="text-gray-600 text-sm">Optimized for performance with AES encryption ensuring message privacy and speed.</p>
+                </div>
+            </div>
+        </section>
+        <!-- SVG Wave Divider -->
+        <div class="-mt-8">
+            <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#f9fafb" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </div>
+        <!-- What Makes It Unique -->
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">What Makes It Unique</h2>
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🗺️</span>
+                    <h3 class="font-semibold mb-2">Intelligent route mapping</h3>
+                    <p class="text-gray-600 text-sm">Utilizes unique IDs for efficient, adaptive pathfinding in mesh networks.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">⏳</span>
+                    <h3 class="font-semibold mb-2">Auto-sync & TTL</h3>
+                    <p class="text-gray-600 text-sm">Prevents message looping with time-to-live mechanism, ensuring reliability.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🔒</span>
+                    <h3 class="font-semibold mb-2">Secure offline messaging</h3>
+                    <p class="text-gray-600 text-sm">End-to-end AES encryption protects privacy in both online and offline modes.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">✨</span>
+                    <h3 class="font-semibold mb-2">User experience</h3>
+                    <p class="text-gray-600 text-sm">Smooth UI with animated onboarding and demo accounts for easy trials.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg md:col-span-3">
+                    <span class="text-4xl mb-3">🚀</span>
+                    <h3 class="font-semibold mb-2">Future plans</h3>
+                    <p class="text-gray-600 text-sm">LORA mesh network integration for extended range and robustness.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Hop-to-Hop Connections Section -->
+        <section class="mb-16">
+            <div class="flex flex-col items-center">
+                <div class="glass p-8 rounded-3xl shadow-2xl max-w-2xl w-full flex flex-col items-center text-center fade-in">
+                    <span class="text-5xl mb-4" style="color:#1C8A4C;">🔗</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-4">Hop-to-Hop Connections</h2>
+                    <p class="text-gray-700 text-lg mb-4">
+                        MeshChat leverages hop-to-hop (multi-hop mesh) networking, where messages are relayed from device to device until they reach their destination—even if there’s no direct connection. This dynamic routing ensures your messages get delivered reliably, even in challenging environments, by finding the best available path through nearby peers.
+                    </p>
+                    <svg width="180" height="60" viewBox="0 0 180 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
+                        <circle cx="30" cy="30" r="16" fill="#1C8A4C" fill-opacity="0.15"/>
+                        <circle cx="90" cy="30" r="16" fill="#1C8A4C" fill-opacity="0.15"/>
+                        <circle cx="150" cy="30" r="16" fill="#1C8A4C" fill-opacity="0.15"/>
+                        <circle cx="30" cy="30" r="10" fill="#1C8A4C"/>
+                        <circle cx="90" cy="30" r="10" fill="#1C8A4C"/>
+                        <circle cx="150" cy="30" r="10" fill="#1C8A4C"/>
+                        <path d="M40 30 Q60 10 80 30" stroke="#1C8A4C" stroke-width="2" fill="none"/>
+                        <path d="M100 30 Q120 50 140 30" stroke="#1C8A4C" stroke-width="2" fill="none"/>
+                        <path d="M40 30 Q60 50 80 30" stroke="#1C8A4C" stroke-width="2" fill="none"/>
+                        <path d="M100 30 Q120 10 140 30" stroke="#1C8A4C" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span class="text-xs text-gray-400">Multi-hop mesh: Message travels device-to-device</span>
+                </div>
+            </div>
+        </section>
+        <!-- SVG Wave Divider -->
+        <div class="-mt-8 rotate-180">
+            <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </div>
+        <!-- Real-World Impact -->
+        <section class="mb-16 bg-gray-50 rounded-3xl py-12">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">Real-World Impact</h2>
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="glass p-6 flex flex-col items-center text-center shadow-lg">
+                    <span class="text-4xl mb-3">🆘</span>
+                    <p class="text-gray-600 text-sm">Supports critical communication for emergency teams</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center shadow-lg">
+                    <span class="text-4xl mb-3">🌍</span>
+                    <p class="text-gray-600 text-sm">Bridges connectivity gaps in underdeveloped and rural areas</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center shadow-lg">
+                    <span class="text-4xl mb-3">💬</span>
+                    <p class="text-gray-600 text-sm">Facilitates everyday casual messaging without internet constraints</p>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm text-center mt-8 max-w-2xl mx-auto">
+                MeshChat empowers users in environments where conventional communication fails, ensuring no one is ever unreachable. This is especially critical during natural disasters or conflict zones where network infrastructure may be damaged or absent.
             </p>
-            
-            <!-- Download Button -->
-            <a href="https://drive.google.com/file/d/1OzLVzx35dFZ3b59c89-yoF-pvHytSWZ7/view?usp=sharing" 
-               class="inline-block bg-meshchat-green hover:bg-meshchat-green-dark text-white font-semibold py-4 px-8 rounded-xl text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
-                Download Now
-            </a>
+        </section>
+        <!-- SVG Wave Divider -->
+        <div class="-mt-8 rotate-180">
+            <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#fff" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
-    </header>
-
-    <!-- The Problem Section -->
-    <section class="py-16 px-4 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">The Problem</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">❌</div>
-                    <h3 class="text-xl font-semibold mb-3">Inconsistent Communication</h3>
-                    <p class="text-gray-600">Remote areas suffer from unreliable or no internet connectivity, making communication challenging.</p>
+        <!-- Why It Works -->
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">Why It Works</h2>
+            <div class="grid gap-6 md:grid-cols-4">
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">✅</span>
+                    <h3 class="font-semibold mb-2">Proven technology</h3>
+                    <p class="text-gray-600 text-sm">Real-time capabilities with Socket.io and robust backend ensure stable online messaging.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">⚠️</div>
-                    <h3 class="text-xl font-semibold mb-3">Emergency Breakdowns</h3>
-                    <p class="text-gray-600">Offline contact is vital during emergencies but current solutions don't support it.</p>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">⚡</span>
+                    <h3 class="font-semibold mb-2">Lightweight & scalable</h3>
+                    <p class="text-gray-600 text-sm">Optimized for devices with limited resources and adaptable for expanding user base.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">🔄</div>
-                    <h3 class="text-xl font-semibold mb-3">No Hybrid Solution</h3>
-                    <p class="text-gray-600">No app seamlessly supports both online and offline messaging modes.</p>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">📶</span>
+                    <h3 class="font-semibold mb-2">Offline independence</h3>
+                    <p class="text-gray-600 text-sm">Peer-to-peer mesh module enables communication without any internet access.</p>
+                </div>
+                <div class="glass p-6 flex flex-col items-center text-center hover:scale-105 transition shadow-lg">
+                    <span class="text-4xl mb-3">🧩</span>
+                    <h3 class="font-semibold mb-2">Modular design</h3>
+                    <p class="text-gray-600 text-sm">Flexible APIs allow extensions and future integrations with emerging mesh technologies.</p>
                 </div>
             </div>
+        </section>
+        <!-- SVG Wave Divider -->
+        <div class="-mt-8">
+            <svg viewBox="0 0 1440 100" class="w-full" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#f9fafb" fill-opacity="1" d="M0,32L48,53.3C96,75,192,117,288,117.3C384,117,480,75,576,74.7C672,75,768,117,864,117.3C960,117,1056,75,1152,74.7C1248,75,1344,117,1392,138.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
         </div>
-    </section>
-
-    <!-- Who It's For Section -->
-    <section class="py-16 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Who It's For</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center p-6 bg-gray-50 rounded-xl">
-                    <div class="text-5xl mb-4">🌄</div>
-                    <h3 class="text-lg font-semibold">Rural Residents</h3>
+        <!-- Source Code Section -->
+        <section class="mb-16">
+            <h2 class="text-2xl md:text-3xl font-bold text-meshchat-green mb-8 text-center">Source Code</h2>
+            <p class="text-gray-600 text-center mb-6">Scan the QR codes below to access the MeshChat Frontend and Backend repositories.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="glass p-6 flex flex-col items-center text-center shadow-lg w-72">
+                    <img src="/frontend.png" alt="Frontend QR Code" class="w-56 max-w-full rounded-xl mb-4" />
+                    <span class="font-semibold text-meshchat-dark text-base mt-2">Frontend</span>
                 </div>
-                <div class="text-center p-6 bg-gray-50 rounded-xl">
-                    <div class="text-5xl mb-4">🚑</div>
-                    <h3 class="text-lg font-semibold">Emergency Responders</h3>
-                </div>
-                <div class="text-center p-6 bg-gray-50 rounded-xl">
-                    <div class="text-5xl mb-4">🧗</div>
-                    <h3 class="text-lg font-semibold">Adventure Travelers</h3>
-                </div>
-                <div class="text-center p-6 bg-gray-50 rounded-xl">
-                    <div class="text-5xl mb-4">🏡</div>
-                    <h3 class="text-lg font-semibold">Rural Communities</h3>
+                <div class="glass p-6 flex flex-col items-center text-center shadow-lg w-72">
+                    <img src="/backend.png" alt="Backend QR Code" class="w-56 max-w-full rounded-xl mb-4" />
+                    <span class="font-semibold text-meshchat-dark text-base mt-2">Backend</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Our Solution Section -->
-    <section class="py-16 px-4 bg-gray-50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Our Solution</h2>
-            <div class="space-y-6">
-                <div class="flex items-start space-x-4">
-                    <div class="text-2xl">🔁</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Hybrid Chat</h3>
-                        <p class="text-gray-600">Automatically switches between online and offline modes seamlessly.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div class="text-2xl">🔄</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Auto-Sync Messages</h3>
-                        <p class="text-gray-600">All offline messages sync automatically when internet connection returns.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div class="text-2xl">📡</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Multiple Protocols</h3>
-                        <p class="text-gray-600">Uses Bluetooth and Wi-Fi Direct for reliable offline communication.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div class="text-2xl">🔐</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Secure & Fast</h3>
-                        <p class="text-gray-600">AES-128 encrypted, lightweight, and optimized for speed.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tech Stack Section -->
-    <section class="py-16 px-4">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Tech Stack</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-meshchat-green/5 p-8 rounded-xl border border-meshchat-green/20">
-                    <h3 class="text-2xl font-bold mb-6 text-meshchat-green">Online Mode</h3>
-                    <ul class="space-y-3 text-gray-700">
-                        <li>• React Native (Frontend)</li>
-                        <li>• Node.js + Express (Backend)</li>
-                        <li>• MongoDB (Database)</li>
-                        <li>• AES-128 Encryption</li>
-                        <li>• Socket.io for real-time</li>
-                    </ul>
-                </div>
-                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
-                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Offline Mode</h3>
-                    <ul class="space-y-3 text-gray-700">
-                        <li>• SQLite for local storage</li>
-                        <li>• Bluetooth + Wi-Fi Direct</li>
-                        <li>• SQLAlchemy routing cache</li>
-                        <li>• TTL-based loop protection</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- What Makes It Unique Section -->
-    <section class="py-16 px-4 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">What Makes It Unique</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="text-center p-6 bg-white rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">🧭</div>
-                    <h3 class="text-lg font-semibold mb-2">Intelligent Routing</h3>
-                    <p class="text-gray-600 text-sm">ID-based routing system for efficient message delivery.</p>
-                </div>
-                <div class="text-center p-6 bg-white rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">⏳</div>
-                    <h3 class="text-lg font-semibold mb-2">Loop Protection</h3>
-                    <p class="text-gray-600 text-sm">TTL prevents message looping and network congestion.</p>
-                </div>
-                <div class="text-center p-6 bg-white rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">🔐</div>
-                    <h3 class="text-lg font-semibold mb-2">Encrypted Offline</h3>
-                    <p class="text-gray-600 text-sm">Full encryption even in offline mesh networks.</p>
-                </div>
-                <div class="text-center p-6 bg-white rounded-xl shadow-md">
-                    <div class="text-4xl mb-4">📡</div>
-                    <h3 class="text-lg font-semibold mb-2">LORA Ready</h3>
-                    <p class="text-gray-600 text-sm">LORA mesh integration coming soon for extended range.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Real-World Impact Section -->
-    <section class="py-16 px-4">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8">Real-World Impact</h2>
-            <div class="bg-meshchat-green/10 p-8 rounded-xl border-l-4 border-meshchat-green">
-                <div class="space-y-4 text-lg text-gray-700">
-                    <p>✓ <strong>Ensures communication in disaster zones</strong> when traditional networks fail</p>
-                    <p>✓ <strong>Bridges internet gaps in rural areas</strong> with reliable mesh networking</p>
-                    <p>✓ <strong>Enables casual offline chats</strong> without any network dependency</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why It Works Section -->
-    <section class="py-16 px-4 bg-gray-50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why It Works</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="flex items-start space-x-4">
-                    <div class="text-3xl">🚀</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Stable Real-time Backend</h3>
-                        <p class="text-gray-600">Built with Socket.io for reliable real-time communication.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div class="text-3xl">🪶</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Lightweight & Mobile-First</h3>
-                        <p class="text-gray-600">Optimized for mobile devices with minimal resource usage.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div class="text-3xl">📶</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Fully Offline-Capable</h3>
-                        <p class="text-gray-600">Complete functionality without any internet connection.</p>
-                    </div>
-                </div>
-                <div class="flex items-start space-x-4">
-                    <div class="text-3xl">⚙️</div>
-                    <div>
-                        <h3 class="text-xl font-semibold mb-2">Modular Architecture</h3>
-                        <p class="text-gray-600">Built for future upgrades and feature expansions.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 px-4 bg-white border-t border-gray-200">
-        <div class="max-w-4xl mx-auto text-center">
-            <p class="text-gray-600">
-                Thank you for exploring MeshChat! Built with ❤️ by the MeshChat team.
-            </p>
-        </div>
-    </footer>
-
+        </section>
+        <!-- Thank You -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-meshchat-green text-center">Thank You!</h2>
+            <p class="text-gray-500 text-sm mb-2 text-center">Exciting times ahead with MeshChat! Join us in shaping the future of hybrid communication, where every connection makes a difference.</p>
+        </section>
+    </main>
+    <footer class="py-8 text-center text-gray-400 text-sm bg-meshchat-dark mt-8">
+        <span id="copyright-year"></span> MeshChat. All rights reserved.
+        <script>
+          document.getElementById('copyright-year').textContent = `© ${new Date().getFullYear()}`;
+        </script>
+      </footer>
 </body>
 </html>
