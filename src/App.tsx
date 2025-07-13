@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   Download, 
   Wifi, 
@@ -19,12 +19,117 @@ import {
   Rocket,
   Feather,
   Signal,
-  Settings
+  Settings,
+  X,
+  CheckCircle
 } from 'lucide-react';
 
 function App() {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState(false);
+
+  const handleDownloadClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmDownload = () => {
+    try {
+      setIsDownloading(true);
+      setShowConfirmation(false);
+      setDownloadError(false);
+      
+      // Direct download URL from Google Drive
+      const downloadUrl = "https://drive.usercontent.google.com/download?id=1OzLVzx35dFZ3b59c89-yoF-pvHytSWZ7&export=download&authuser=0";
+      
+      // Create a temporary link element for direct download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'MeshChat.apk';
+      link.style.display = 'none';
+      
+      // Add to DOM, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Reset downloading state
+      setTimeout(() => {
+        setIsDownloading(false);
+      }, 2000);
+      
+    } catch (error) {
+      console.error('Download error:', error);
+      setIsDownloading(false);
+      setDownloadError(true);
+    }
+  };
+
+  const handleCancelDownload = () => {
+    setShowConfirmation(false);
+  };
+
   return (
     <div className="bg-white text-gray-800 leading-relaxed font-sans">
+      {/* Confirmation Modal */}
+      {showConfirmation && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full shadow-2xl">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-bold text-gray-900">Confirm Download</h3>
+              <button
+                onClick={handleCancelDownload}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <p className="text-gray-600 mb-6">
+              Are you sure you want to download MeshChat? This will start the download immediately.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleCancelDownload}
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmDownload}
+                className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Download Error Notification */}
+      {downloadError && (
+        <div className="fixed top-4 right-4 bg-red-50 border border-red-200 rounded-lg p-4 shadow-lg z-50 max-w-sm">
+          <div className="flex items-start space-x-3">
+            <div className="flex-shrink-0">
+              <X className="w-5 h-5 text-red-400" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-medium text-red-800">Download Issue</h3>
+              <p className="text-sm text-red-700 mt-1">
+                The file might be private. Please make sure the Google Drive file is set to "Anyone with the link can view".
+              </p>
+              <button
+                onClick={() => setDownloadError(false)}
+                className="text-red-600 hover:text-red-800 text-sm font-medium mt-2"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header Section */}
       <header className="bg-white py-12 px-4 text-center">
         <div className="max-w-4xl mx-auto">
@@ -42,13 +147,23 @@ function App() {
           </p>
           
           {/* Download Button */}
-          <a 
-            href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID" 
-            className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-8 rounded-xl text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+          <button 
+            onClick={handleDownloadClick}
+            disabled={isDownloading}
+            className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white font-semibold py-4 px-8 rounded-xl text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 disabled:transform-none"
           >
-            <Download className="w-6 h-6" />
-            Download Now
-          </a>
+            {isDownloading ? (
+              <>
+                <RefreshCw className="w-6 h-6 animate-spin" />
+                Downloading...
+              </>
+            ) : (
+              <>
+                <Download className="w-6 h-6" />
+                Download Now
+              </>
+            )}
+          </button>
         </div>
       </header>
 
@@ -335,15 +450,9 @@ function App() {
       {/* Footer */}
       <footer className="py-12 px-4 bg-white border-t border-gray-200">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600">
             Thank you for exploring MeshChat! Built with ❤️ by the MeshChat team.
           </p>
-          {/* QR Code Placeholder */}
-          <div className="flex justify-center">
-            <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
-              <span className="text-gray-400 text-sm text-center">QR Code<br />Placeholder</span>
-            </div>
-          </div>
         </div>
       </footer>
     </div>

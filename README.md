@@ -26,7 +26,7 @@ A clean, responsive landing page for **MeshChat**, a hybrid communication app th
 2. **Replace the download button link**
    In `index.html`, find this line:
 ```html
-<a href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
+<a href="https://drive.google.com/file/d/1OzLVzx35dFZ3b59c89-yoF-pvHytSWZ7/view?usp=sharing"
 ```
 Replace `YOUR_FILE_ID` with your actual Google Drive file ID.
 
